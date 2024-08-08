@@ -141,108 +141,123 @@ const Profile = () => {
   return (
 
     <>
-      <div className="w-full h-[92.5vh] bg-red-300">
+      <div className="w-full ">
 
-        <div className="w-full h-[30vh] bg-green-300">
-          
+        <div style={{ backgroundImage: "url(https://images.unsplash.com/photo-1628744448839-170bf324f27e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)" }}
+          className="w-full bg-cover bg-center h-[30vh] bg-green-300">
+
 
         </div>
 
-        <div className="w-[40vw]">
+        <div className="flex items-center justify-around">
+          <div className="w-[42vw]  h-[53vh] p-3">
 
-          <div className="bg-slate-300">
-            <h1>Profile</h1>
-
-
-            <form onSubmit={handleSubmit}>
-              <input onChange={(e) => setFile(e.target.files[0])} type="file" hidden ref={fileRef} accept="image/*" />
-
-              <img onClick={() => fileRef.current.click()} className="w-32 h-32 rounded-full" src={formData.avatar || currentUser?.avatar} alt="profile" />
-
-              <p>
-                {fileUploadError ? (
-                  <span className="text-red-400">
-                    Error Image Upload(image must be less than 4 mb)
-                  </span>) : filePerc > 0 && filePerc < 100 ? (
-                    <span>{`Uploading ${filePerc}%`}</span>
-                  ) : filePerc === 100 ? (
-                    <span className="text-green-400">Image successfully uploaded!</span>
-                  ) : (
-                  ''
-                )
-                }
-              </p>
-
-              <div className="flex flex-col">
-                <label className="text-black" htmlFor="username">Username</label>
-
-                <input className="border" type="text"
-                  defaultValue={currentUser?.user?.username} id="username" onChange={handleChange} />
-              </div>
-              <div className="flex flex-col">
-                <label className="text-black" htmlFor="email">Email</label>
-
-                <input className="border" type="email" id="email" onChange={handleChange}
-                  defaultValue={currentUser?.user?.email} />
-              </div>
-              <div className="flex flex-col">
-                <label className="text-black" htmlFor="password">Password</label>
-
-                <input className="border" type="password" id="password" onChange={handleChange}
-                  defaultValue={currentUser.password} />
-              </div>
-
-              <button type="submit" className="bg-green-500 text-white p-3 mt-3">Update</button>
-
-            </form>
-
-          </div>
-        </div>
-        <div>
-          <button onClick={deleteAccount} className="bg-slate-400 ml-3 p-3 text-red-500">Delete Account</button>
-          <button onClick={Logout} className="bg-slate-400 ml-3 p-3  text-red-500">Sign Out</button>
-          <Link to="/createlisting" className="bg-slate-400 ml-3 p-3  text-red-500">Create Listing</Link>
-        </div>
-
-        <button onClick={handleShowListings} className="text-green-300 w-full">
-          Show Listings</button>
-
-        <p>
-          {showListingsError ? "Error showing listing" : ''}
-        </p>
-
-        {userListings &&
-          userListings.length > 0 &&
-          <div className="flex flex-col gap-4">
-            <h1>Your Listings</h1>
-            {userListings.map((listing) => (
-              <div key={listing._id}
-                className="border rounded-lg p-3 flex justify-between items-center gap-4">
-                <Link to={`/listing/${listing._id}`}>
-                  <img src={listing.imageUrls[0]} alt="listing"
-                    className="h-16 w-16 object-contain" />
+            <div className="bg-[#5E60CD] rounded-lg p-2 h-full">
 
 
-                </Link>
-                <Link
-                  className="text-slate-700 font-semibold flex-1"
-                  to={`/listing/${listing._id}`}>
-                  <p>{listing.name}</p>
+              <form onSubmit={handleSubmit}>
+                <input onChange={(e) => setFile(e.target.files[0])} type="file" hidden ref={fileRef} accept="image/*" />
 
+                {/* <img onClick={() => fileRef.current.click()} className="w-32 h-32 rounded-full" src={formData.avatar || currentUser?.avatar} alt="profile" /> */}
+                <img className="w-32 h-32 object-cover  object-top rounded-full" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" />
 
-                </Link>
-                <div className="flex flex-col items-center">
-                  <button onClick={() => handleDeleteListing(listing._id)} className="text-red-700 uppercase">Delete</button>
-                  <Link to={`/updateListing/${listing._id}`} >
-                    <button className="text-green-700 uppercase">Edit</button>
-                  </Link>
+                <p>
+                  {fileUploadError ? (
+                    <span className="text-red-400">
+                      Error Image Upload(image must be less than 4 mb)
+                    </span>) : filePerc > 0 && filePerc < 100 ? (
+                      <span>{`Uploading ${filePerc}%`}</span>
+                    ) : filePerc === 100 ? (
+                      <span className="text-green-400">Image successfully uploaded!</span>
+                    ) : (
+                    ''
+                  )
+                  }
+                </p>
+
+                <div className="flex flex-col ml-36  -mt-24">
+                  <label className="text-white " htmlFor="username">Username</label>
+
+                  <input className="border w-[28vw] rounded-lg pl-2  h-11" type="text"
+                    defaultValue={currentUser?.user?.username} id="username" onChange={handleChange} />
+                </div>
+                <div className="flex flex-col mt-1 ml-36">
+                  <label className="text-white " htmlFor="email">Email</label>
+
+                  <input className="border w-[28vw] rounded-lg pl-2 h-10" type="email" id="email" onChange={handleChange}
+                    defaultValue={currentUser?.user?.email} />
+                </div>
+                <div className="flex flex-col mt-1 ml-36">
+                  <label className="text-white " htmlFor="password">Password</label>
+
+                  <input className="border w-[28vw] rounded-lg pl-2 h-10" type="password" id="password" onChange={handleChange}
+                    defaultValue={currentUser.password} />
                 </div>
 
-              </div>
-            ))}
+                <button type="submit" className="bg-[#FF9A00] font-semibold mt-3 w-[28vw] rounded-lg pl-2 ml-36 text-white p-3 ">Update</button>
 
+              </form>
+
+            </div>
           </div>
-        }
+          <div className="w-[42vw] mt-3 rounded-lg  h-[50vh] p-3 ">
+            <button onClick={Logout} className="bg-[#AA7BFB] font-semibold rounded-lg text-xl text-white ml-3 p-5 mt-5 w-[36vw]  ">Sign Out</button>
+            <Link to="/createlisting" >
+            <button className="bg-[#C3D020] rounded-lg text-xl text-white ml-3 p-5 mt-5  w-[36vw]  ">
+
+            Create Listing
+            </button>
+            </Link>
+            <button onClick={deleteAccount} className="bg-[#98AE1B] rounded-lg text-xl text-white mt-3 ml-3 w-[36vw] p-5 ">Delete Account</button>
+          </div>
+
+        </div>
+
+        <div className="w-full p-3">
+
+
+          <button onClick={handleShowListings} className="text-white text-3xl font-semibold mt-6 h-[8vh] bg-black w-full">
+            Show Listings</button>
+
+          <p>
+            {showListingsError ? "Error showing listing" : ''}
+          </p>
+
+          {userListings &&
+            userListings.length > 0 &&
+            <div className="flex flex-col gap-4">
+              <h1 className="text-center text-black mt-3">Your Listings</h1>
+              {userListings.map((listing) => (
+                <div key={listing._id}
+                  className="border bg-black rounded-lg p-3 flex justify-between items-center gap-4">
+                  <Link to={`/listing/${listing._id}`}>
+                    <img src={listing.imageUrls[0]} alt="listing"
+                      className="h-20 w-20 object-contain" />
+
+
+                  </Link>
+                  <Link
+                    className="text-white font-semibold flex-1"
+                    to={`/listing/${listing._id}`}>
+                    <p className="text-xl">{listing.name}</p>
+
+
+                  </Link>
+                  <div className="flex flex-col items-center">
+                    <button onClick={() => handleDeleteListing(listing._id)} className="text-red-700 uppercase">Delete</button>
+                    <Link to={`/updateListing/${listing._id}`} >
+                      <button className="text-white uppercase">Edit</button>
+                    </Link>
+                  </div>
+
+                </div>
+              ))}
+
+            </div>
+          }
+
+        </div>
+
 
       </div>
 
